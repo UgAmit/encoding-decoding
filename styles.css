@@ -1,0 +1,261 @@
+/* encoding-decoding - Modern CSS Styles */
+
+/* ---------------------------------------- */
+/*  1. CSS Custom Properties (Variables)     */
+/* ---------------------------------------- */
+
+:root {
+  /* Colors */
+  --color-primary: #3498db;  /* Blue */
+  --color-secondary: #e74c3c; /* Red */
+  --color-accent: #f39c12;   /* Orange */
+  --color-neutral-light: #f0f0f0;
+  --color-neutral-medium: #d0d0d0;
+  --color-neutral-dark: #333;
+  --color-text-light: #fff;
+  --color-text-dark: #222;
+
+  /* Typography */
+  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-size-base: 16px;
+  --font-size-small: 0.8rem;
+  --font-size-large: 1.2rem;
+  --line-height-base: 1.6;
+
+  /* Spacing */
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 1.5rem;
+  --spacing-xlarge: 2rem;
+
+  /* Border Radius */
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+
+  /* Shadows */
+  --box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --box-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  /* Transition Duration */
+  --transition-duration: 0.3s;
+}
+
+
+/* ---------------------------------------- */
+/*  2. General Styles & Reset               */
+/* ---------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-dark);
+  background-color: var(--color-neutral-light);
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-duration);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Prevents extra spacing below images */
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  padding: var(--spacing-small);
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--border-radius-small);
+  width: 100%;
+  margin-bottom: var(--spacing-medium);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.3); /* Requires extracting RGB value for transparency */
+}
+
+/* ---------------------------------------- */
+/*  3. Layout & Structure (Mobile-First)    */
+/* ---------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto;
+  padding: var(--spacing-medium);
+}
+
+/* Header */
+.header {
+  background-color: var(--color-text-dark);
+  color: var(--color-text-light);
+  padding: var(--spacing-medium);
+  box-shadow: var(--box-shadow-light);
+  position: sticky;
+  top: 0;
+  z-index: 10; /* Ensure it stays on top of other content */
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  font-size: var(--font-size-large);
+  font-weight: bold;
+}
+
+.header__nav ul {
+  display: flex;
+  gap: var(--spacing-medium);
+}
+
+.header__nav a {
+  color: var(--color-text-light);
+  padding: var(--spacing-small);
+  border-radius: var(--border-radius-small);
+  transition: background-color var(--transition-duration);
+}
+
+.header__nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Main Content */
+main {
+  padding: var(--spacing-medium);
+}
+
+/* Section */
+.section {
+  margin-bottom: var(--spacing-xlarge);
+}
+
+.section__title {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--spacing-medium);
+  border-bottom: 2px solid var(--color-neutral-medium);
+  padding-bottom: var(--spacing-small);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-neutral-dark);
+  color: var(--color-text-light);
+  padding: var(--spacing-medium);
+  text-align: center;
+}
+
+/* ---------------------------------------- */
+/*  4. Flexbox & Grid Layouts               */
+/* ---------------------------------------- */
+
+/* Example Flexbox Layout */
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-medium);
+}
+
+.feature-item {
+  flex: 1 1 300px; /* Grow, shrink, and initial width */
+  padding: var(--spacing-medium);
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--box-shadow-light);
+  background-color: #fff;
+}
+
+.feature-item h3 {
+  margin-bottom: var(--spacing-small);
+}
+
+/* Example Grid Layout (for a Gallery) */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive column count */
+  gap: var(--spacing-medium);
+}
+
+.gallery-item {
+  border: 1px solid var(--color-neutral-medium);
+  border-radius: var(--border-radius-medium);
+  overflow: hidden; /* Hide any overflow from the image */
+  box-shadow: var(--box-shadow-light);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency.  Consider object-fit: cover; */
+  object-fit: cover; /* Ensures images fill the space without distortion */
+  transition: transform var(--transition-duration);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1); /* Subtle zoom on hover */
+}
+
+
+
+/* ---------------------------------------- */
+/*  5. Responsive Design (Media Queries)    */
+/* ---------------------------------------- */
+
+/* Small screens (phones) - Default styles apply */
+
+/* Medium screens (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    padding: var(--spacing-large);
+  }
+
+  .header__nav ul {
+    gap: var(--spacing-large);
+  }
+
+  .feature-list {
+    flex-direction: row; /* Ensure features are in a row on larger screens */
+  }
+}
+
+/* Large screens (desktops, 992px and up) */
